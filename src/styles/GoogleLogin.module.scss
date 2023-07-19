@@ -1,0 +1,32 @@
+@use "./partials/breakpoints" as*;
+@use "./partials/colors" as*;
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 160px;
+}
+
+.google {
+    display: flex;
+    align-items: center;
+    padding: .5rem 2rem;
+    gap: 1rem;
+    background-color: transparent;
+    color: $darkest;
+    border-radius: 35px;
+    border: 1px solid $darkest;
+    font-family: inherit;
+    font-weight: 100;
+    cursor: pointer;
+}
+
+.logo {
+    height: 2rem;
+    width: 2rem;
+}
+
+.text {
+    font-size: 1.1rem;
+}

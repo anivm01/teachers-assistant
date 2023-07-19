@@ -1,0 +1,37 @@
+@use "./partials/breakpoints" as*;
+@use "./partials/colors" as*;
+
+.container {
+    margin: 2rem auto;
+    padding: 1rem;
+    max-width: 31.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    background-color: $light;
+    padding: 2rem;
+    border-radius: 50%;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.greeting {
+    font-weight: 300;
+}
+
+.disclaimer {
+    margin: 1em auto;
+    font-weight: 300;
+    font-style: italic;
+    text-align: center;
+}
