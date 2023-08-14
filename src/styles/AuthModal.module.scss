@@ -1,0 +1,30 @@
+.background {
+    background-color: rgb(24 24 27 / 0.2);
+    z-index: 10;
+    inset: 0px;
+    position: fixed;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    max-width: 32rem;
+    height: 100%;
+    width: 100%;
+    margin: 2rem auto;
+}
+
+.box {
+    padding: 5rem 0.5rem;
+    background-color: rgb(255 255 255);
+    width: 100%;
+    height: -moz-fit-content;
+    height: fit-content;
+    position: relative;
+}
+
+.close_box {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}

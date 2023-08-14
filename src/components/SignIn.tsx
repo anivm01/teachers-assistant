@@ -1,7 +1,4 @@
 import Link from "next/link"
-import logo from "../../public/teachers-assistant-logo.svg";
-// import UserAuthForm from "./UserAuthForm"
-import Image from "next/image";
 import styles from "../styles/SignIn.module.scss"
 import GoogleLogin from "./GoogleLogin";
 

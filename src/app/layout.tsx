@@ -18,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={lilita.className}>
+
         <WordListProvider>
           <Header />
           {children}
