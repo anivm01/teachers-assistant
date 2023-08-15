@@ -8,7 +8,7 @@ import { authOptions } from "@/lib/auth";
 import Logout from "./Logout";
 
 const Header = async () => {
-  const session = await getServerSession(authOptions)
+  const session = await getServerSession(authOptions);
   return (
     <header className={styles.container}>
       <div className={styles.content}>
@@ -17,12 +17,16 @@ const Header = async () => {
         </Link>
         <h1 className={styles.title}>Teacher's Assistant</h1>
         <MainNav />
-        {session?.user ? <Logout /> : <Link href="/sign-in" className={styles.link}>
-          Login
-        </Link>}
+        {session?.user ? (
+          <Logout />
+        ) : (
+          <Link href="/sign-in" className={styles.link}>
+            Login
+          </Link>
+        )}
       </div>
     </header>
   );
-}
+};
 
-export default Header
+export default Header;

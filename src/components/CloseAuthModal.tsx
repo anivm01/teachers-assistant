@@ -1,17 +1,29 @@
-'use client'
-import { useRouter } from 'next/navigation'
-import { FC } from 'react'
+"use client";
+import { useRouter } from "next/navigation";
+import { FC } from "react";
+import styles from "../styles/CloseAuthModal.module.scss";
 
-interface CloseAuthModalProps { }
-
-const CloseAuthModal: FC<CloseAuthModalProps> = ({ }) => {
-    const router = useRouter()
-
-    return (
-        <button type='button' onClick={() => router.back()}>
-            X
-        </button>
-    )
+interface CloseAuthModalProps {
+  children: React.ReactNode;
 }
 
-export default CloseAuthModal
+const CloseAuthModal: FC<CloseAuthModalProps> = ({ children }) => {
+  const router = useRouter();
+
+  return (
+    <div className={styles.background} onClick={() => router.back()}>
+      <div className={styles.container}>
+        <button
+          className={styles.exit}
+          type="button"
+          onClick={() => router.back()}
+        >
+          X
+        </button>
+        {children}
+      </div>
+    </div>
+  );
+};
+
+export default CloseAuthModal;

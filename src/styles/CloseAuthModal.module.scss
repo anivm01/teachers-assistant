@@ -1,0 +1,33 @@
+@use "./partials/breakpoints" as*;
+@use "./partials/colors" as*;
+
+.background {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    inset: 0px;
+    position: fixed;
+}
+
+.container {
+    background-color: $light;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.exit {
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+    margin: 0 0 0 auto;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: $dark;
+}
