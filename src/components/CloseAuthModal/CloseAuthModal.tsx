@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
-import styles from "../styles/CloseAuthModal.module.scss";
+import styles from "./CloseAuthModal.module.scss";
 
 interface CloseAuthModalProps {
   children: React.ReactNode;

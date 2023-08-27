@@ -1,7 +1,7 @@
 import { WordListProvider } from "@/contexts/WordListContext";
 import "../styles/globals.scss";
 import { Lilita_One } from "next/font/google";
-import Header from "@/components/Header";
+import Header from "@/components/Header/Header";
 
 const lilita = Lilita_One({ weight: "400", subsets: ["latin"] });
 export const metadata = {

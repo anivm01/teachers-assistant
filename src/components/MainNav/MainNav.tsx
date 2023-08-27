@@ -1,15 +1,14 @@
 "use client";
 import Link from "next/link";
-import styles from "../styles/MainNav.module.scss";
+import styles from "./MainNav.module.scss";
 import hamburger from "../../public/hamburger.svg";
 import Image from "next/image";
 import { useState } from "react";
-import { useWordList } from "../contexts/WordListContext";
-import Logout from "./Logout";
+import { useWordList } from "../../contexts/WordListContext";
+import Logout from "../Logout/Logout";
 import { authOptions, getAuthSession } from "@/lib/auth";
 import { User, getServerSession } from "next-auth";
-
-
+import { HamburgerMenu } from "@/assets/svg";
 
 const MainNav: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +27,7 @@ const MainNav: React.FC = () => {
         onClick={handleToggle}
         onBlur={() => setIsOpen(false)}
       >
-        <Image src={hamburger} alt="hamburger menu" className={styles.icon} />
+        <HamburgerMenu className={styles.icon} />
       </button>
       <ul
         className={`${styles.menu_desktop}
@@ -60,6 +59,6 @@ const MainNav: React.FC = () => {
       </ul>
     </nav>
   );
-}
+};
 
 export default MainNav;

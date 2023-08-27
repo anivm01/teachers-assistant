@@ -1,5 +1,5 @@
-import CloseAuthModal from "@/components/CloseAuthModal";
-import SignIn from "@/components/SignIn";
+import CloseAuthModal from "@/components/CloseAuthModal/CloseAuthModal";
+import SignIn from "@/components/SignIn/SignIn";
 import { FC } from "react";
 
 const page: FC = () => {

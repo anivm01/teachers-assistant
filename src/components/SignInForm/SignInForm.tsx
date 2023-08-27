@@ -9,10 +9,6 @@ function SignInForm() {
     email: "",
     password: "",
   });
-  interface UserData {
-    email: string;
-    password: string;
-  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

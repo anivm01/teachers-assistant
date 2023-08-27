@@ -1,5 +1,5 @@
-@use "./partials/breakpoints" as*;
-@use "./partials/colors" as*;
+@use "../../styles/partials/breakpoints" as*;
+@use "../../styles/partials/colors" as*;
 
 .box {
     display: flex;
@@ -8,7 +8,7 @@
     min-height: 160px;
 }
 
-.google {
+.button {
     display: flex;
     align-items: center;
     padding: .5rem 2rem;
@@ -25,8 +25,14 @@
 .logo {
     height: 2rem;
     width: 2rem;
+    fill: $darkest;
 }
 
 .text {
     font-size: 1.1rem;
+}
+
+.provider {
+    text-transform: capitalize;
+    font-size: inherit;
 }
