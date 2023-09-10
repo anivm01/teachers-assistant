@@ -1,0 +1,45 @@
+@use "../../styles/partials/breakpoints" as*;
+@use "../../styles/partials/colors" as*;
+
+
+.button {
+    text-transform: capitalize;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    font-weight: 300;
+    font-family: inherit;
+    background: none;
+    display: inline-block;
+    border: none;
+    margin: 0;
+    cursor: pointer;
+    text-align: center;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    &:hover {
+        font-weight: 500;
+        background-color: $accent;
+        color: $dark;
+    }
+
+    &:focus {
+        scale: .9;
+    }
+
+    &:active {
+        scale: .9;
+    }
+}
+
+.outlined {
+    border: 1px solid $dark;
+    color: $dark;
+}
+
+.filled {
+    background-color: $dark;
+    color: $pale;
+    border: 1px solid $dark;
+}

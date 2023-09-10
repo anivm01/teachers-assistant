@@ -1,7 +1,12 @@
 @use "../../styles/partials/breakpoints" as*;
 @use "../../styles/partials/colors" as*;
 
-// .nav {}
+.nav {
+    max-width: 80rem;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 1rem;
+}
 
 .menu_desktop {
     list-style: none;
@@ -10,43 +15,70 @@
     @include desktop {
         display: flex;
         gap: 1.5rem;
+        justify-content: flex-end;
     }
-
 }
 
 .menu_mobile {
     list-style: none;
-    background-color: $medium;
-    padding: 1rem;
+    background-color: $dark;
+    width: 100%;
     position: absolute;
-    top: 3rem;
-    right: 1rem;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    align-items: center;
 }
 
-.hamburger_button {
+.trigger {
     background-color: transparent;
     border: none;
     cursor: pointer;
+    width: 100%;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
 
     @include desktop {
         display: none;
     }
-}
 
-.icon {
-    width: 2rem;
-    height: 2.3rem;
+    &_icon {
+        width: 1rem;
+        fill: $pale;
+    }
 
-    @include tablet {
-        width: 2.5rem;
+    &_text {
+        font-size: 1rem;
+        color: $pale;
     }
 }
 
 .link {
-    color: $darkest;
     text-decoration: none;
-    font-size: 1.25rem;
+    font-size: 1rem;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: $accent;
+    }
+}
+
+.item {
+    border-bottom: 1px solid $pale;
+    width: 100%;
+    padding: 1rem 0;
+    text-align: center;
+
+    @include desktop {
+        border: none;
+        width: auto;
+        padding: 0;
+    }
 }

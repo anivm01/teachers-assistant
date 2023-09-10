@@ -1,18 +1,13 @@
 "use client";
 import Link from "next/link";
 import styles from "./MainNav.module.scss";
-import hamburger from "../../public/hamburger.svg";
-import Image from "next/image";
 import { useState } from "react";
-import { useWordList } from "../../contexts/WordListContext";
-import Logout from "../Logout/Logout";
-import { authOptions, getAuthSession } from "@/lib/auth";
-import { User, getServerSession } from "next-auth";
-import { HamburgerMenu } from "@/assets/svg";
+import Chevron from "@/assets/svg/Chevron";
 
 const MainNav: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const wordList = useWordList();
+
+  const menuItems = ["Home", "Library", "Custom", "About"];
 
   // Toggle the state when the mobile menu button is clicked
   const handleToggle = () => {
@@ -22,40 +17,29 @@ const MainNav: React.FC = () => {
   return (
     <nav className={styles.nav}>
       <button
-        className={styles.hamburger_button}
+        className={styles.trigger}
         type="button"
         onClick={handleToggle}
         onBlur={() => setIsOpen(false)}
       >
-        <HamburgerMenu className={styles.icon} />
+        <span className={styles.trigger_text}>Menu</span>
+        <Chevron className={styles.trigger_icon} />
       </button>
       <ul
-        className={`${styles.menu_desktop}
-    ${isOpen ? styles.menu_mobile : ""}`}
+        className={`
+          ${styles.menu_desktop}
+          ${isOpen ? styles.menu_mobile : ""}`}
         onClick={() => setIsOpen(false)}
       >
-        <li>
-          {wordList.length > 0 ? (
-            <Link href="/edit-list" className={styles.link}>
-              Edit Word List
-            </Link>
-          ) : (
-            <Link href="/create-list" className={styles.link}>
-              New Word List
-            </Link>
-          )}
-        </li>
-        <li>
-          <Link href="/" className={styles.link}>
-            Library
-          </Link>
-        </li>
-        {/* <li>
-          {user ? <Logout /> : <Link href="/sign-in" className={styles.link}>
-            Login
-          </Link>}
-
-        </li> */}
+        {menuItems.map((item, index) => {
+          return (
+            <li key={index} className={styles.item}>
+              <Link href="/" className={styles.link}>
+                {item}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );
