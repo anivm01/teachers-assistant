@@ -38,12 +38,65 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String            @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?           @unique
   emailVerified DateTime?
   image         String?
   password      String?
   accounts      Account[]
   sessions      Session[]
+  type          UserType          @default(Free)
+  Downloads     DownloadHistory[]
+}
+
+enum UserType {
+  Free
+  Premium
+  Admin
+}
+
+enum productType {
+  Free
+  Premium
+}
+
+model Category {
+  id                    String              @id @default(cuid())
+  category              String
+  downloadableProduct   DownloadableProduct @relation(fields: [downloadableProductId], references: [id])
+  downloadableProductId String
+}
+
+model Pdf {
+  id                    String              @id @default(cuid())
+  description           String
+  fileName              String
+  Downloads             DownloadHistory[]
+  downloadableProduct   DownloadableProduct @relation(fields: [downloadableProductId], references: [id])
+  downloadableProductId String
+}
+
+model Image {
+  id                    String              @id @default(cuid())
+  fileName              String
+  downloadableProduct   DownloadableProduct @relation(fields: [downloadableProductId], references: [id])
+  downloadableProductId String
+}
+
+model DownloadableProduct {
+  id          String      @id @default(cuid())
+  description String
+  type        productType @default(Free)
+  pdfs        Pdf[]
+  images      Image[]
+  category    Category[]
+}
+
+model DownloadHistory {
+  id     String @id @default(cuid())
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+  pdf    Pdf    @relation(fields: [pdfId], references: [id])
+  pdfId  String
 }

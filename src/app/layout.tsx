@@ -2,6 +2,8 @@ import { WordListProvider } from "@/contexts/WordListContext";
 import "../styles/globals.scss";
 import { Lilita_One } from "next/font/google";
 import Header from "@/components/Header/Header";
+import "../styles/fonts.scss";
+import Head from "next/head";
 
 const lilita = Lilita_One({ weight: "400", subsets: ["latin"] });
 export const metadata = {
@@ -19,6 +21,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Head>
+        <link
+          rel="preload"
+          href="/fonts/TeachingPrintRegular.woff"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+      </Head>
       <body className={lilita.className}>
         <WordListProvider>
           <Header />

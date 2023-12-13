@@ -1,18 +1,10 @@
-import Button from "@/components/Button/Button";
+import WordList from "@/components/WordList/WordList";
 import React from "react";
 
 const Home: React.FC = () => {
   return (
     <main>
-      <Button variant="outlined" type="submit">
-        Button
-      </Button>
-      <Button variant="filled" type="submit">
-        Button
-      </Button>
-      <Button component="a" href="/sign-in">
-        Link
-      </Button>
+      <WordList />
     </main>
   );
 };
