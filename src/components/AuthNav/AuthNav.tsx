@@ -9,7 +9,7 @@ const AuthNav = async () => {
   return (
     <nav>
       {session?.user ? (
-        <Logout />
+        <Logout type={session.user.type} />
       ) : (
         <div className={styles.buttons}>
           <Button variant="outlined" component="a" href="/sign-in">

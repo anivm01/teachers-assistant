@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
-import type { Session, User } from "next-auth"
-import type { JWT } from "next-auth/jwt"
+import { DefaultSession, DefaultUser } from "next-auth";
 
 type UserId = string
 
@@ -10,12 +8,15 @@ declare module "next-auth/jwt" {
         username?: string | null
     }
 }
+
 declare module "next-auth" {
-    interface Session {
+    interface Session extends DefaultSession {
         user: User & {
             id: UserId
             username?: string | null
         }
     }
+    interface User extends DefaultUser {
+        type: 'Free' | 'Admin';
+    }
 }
-

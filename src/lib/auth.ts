@@ -63,7 +63,13 @@ export const authOptions: NextAuthOptions = {
                     return null
                 }
 
-                return user
+                return {
+                    id: user.id,
+                    name: user.name,
+                    email: user.email,
+                    image: user.image,
+                    type: user.type as 'Free' | 'Admin',
+                };
             }
         })
     ],
@@ -74,6 +80,7 @@ export const authOptions: NextAuthOptions = {
                 session.user.name = token.name
                 session.user.email = token.email
                 session.user.image = token.picture
+                session.user.type = token.type as 'Free' | 'Admin'
             }
             return session
         },
@@ -93,6 +100,7 @@ export const authOptions: NextAuthOptions = {
                 name: dbUser.name,
                 email: dbUser.email,
                 picture: dbUser.image,
+                type: dbUser.type,
             }
         },
         redirect() {

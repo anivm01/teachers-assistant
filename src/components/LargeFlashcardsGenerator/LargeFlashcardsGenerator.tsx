@@ -9,7 +9,7 @@ import {
   View,
 } from "@react-pdf/renderer";
 import { useWordList } from "@/contexts/WordListContext";
-
+import WordListSamle from "../../data/wordListSample.json";
 type PaperType = "A4" | "LETTER";
 interface LargeFlashcardsGeneratorProps {
   paperType: PaperType;
