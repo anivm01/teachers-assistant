@@ -40,28 +40,27 @@ export async function POST(req: NextRequest) {
 
         // Upload file to Digital Ocean Spaces
         const uploadResult = await s3.send(new PutObjectCommand({
-            Bucket: process.env.DO_SPACES_NAME, // Make sure you have this in your .env
+            Bucket: process.env.DO_SPACES_NAME,
             Key: `uploads/${fileName}`,
-            Body: buffer, // or file
-            ACL: 'public-read', // If you want the file to be publicly accessible
+            Body: buffer,
+            ACL: 'public-read',
             ContentType: contentType,
         }));
         console.log(uploadResult)
-        // Assuming the upload was successful and you have a public URL pattern
-        const fileUrl = `https://${process.env.DO_SPACES_NAME}.${process.env.DO_SPACES_ENDPOINT}/uploads/${fileName}`;
 
-        // Save file record in the database
+        const fileUrl = `${process.env.DO_SPACES_CDN_ENDPOINT}/uploads/${fileName}`;
+
+
         const savedFile = await db.file.create({
             data: {
                 fileName: fileName,
                 url: fileUrl,
                 fileType: contentType,
-                // Include other fields as necessary
             },
         });
-        console.log(savedFile)
 
         return NextResponse.json({ success: true, data: savedFile });
+
     } catch (error) {
         console.error('Upload error:', error);
         return NextResponse.json({ success: false, message: 'Error uploading file' });

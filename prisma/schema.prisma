@@ -69,7 +69,7 @@ model Category {
 
 model File {
   id               String                @id @default(cuid())
-  fileName         String
+  fileName         String                @unique
   url              String
   fileType         String?
   createdAt        DateTime              @default(now())

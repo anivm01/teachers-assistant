@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['uploadthing.com', 'lh3.googleusercontent.com'],
+        domains: ['ta-bucket-01.nyc3.cdn.digitaloceanspaces.com'],
     },
 }
 
