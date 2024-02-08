@@ -1,9 +1,11 @@
 "use client";
 import React, { useState, ChangeEvent, FormEvent } from "react";
+import axios from "axios"; // Import axios
 
 const FileUploadForm: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [inputKey, setInputKey] = useState(Date.now());
+  const [message, setMessage] = useState("");
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -13,21 +15,19 @@ const FileUploadForm: React.FC = () => {
     formData.append("file", file);
 
     try {
-      const res = await fetch("/api/files", {
-        method: "POST",
-        body: formData,
+      // Use axios for the POST request
+      const response = await axios.post("/api/files", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
 
-      if (!res.ok) throw new Error(await res.text());
-      // Handle the successful response here
-      console.log(res);
       setFile(null);
       setInputKey(Date.now());
-      return;
+      setMessage(response.data.message);
     } catch (error) {
       console.error(error);
-      // Handle errors here
-      console.log(error);
+      setMessage("Error uploading file");
     }
   };
 
@@ -46,6 +46,7 @@ const FileUploadForm: React.FC = () => {
         onChange={handleFileChange}
       />
       <input type="submit" value="Upload" />
+      {message && <p>{message}</p>}
     </form>
   );
 };

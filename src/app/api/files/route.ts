@@ -28,7 +28,6 @@ export async function POST(req: NextRequest) {
 
         const formData = await req.formData();
         const file = formData.get("file");
-        console.log(file)
 
         if (!file || typeof file === "string") {
             return new Response("File is required.", { status: 400 });
@@ -39,14 +38,13 @@ export async function POST(req: NextRequest) {
         const buffer = Buffer.from(await file.arrayBuffer());
 
         // Upload file to Digital Ocean Spaces
-        const uploadResult = await s3.send(new PutObjectCommand({
+        await s3.send(new PutObjectCommand({
             Bucket: process.env.DO_SPACES_NAME,
             Key: `uploads/${fileName}`,
             Body: buffer,
             ACL: 'public-read',
             ContentType: contentType,
         }));
-        console.log(uploadResult)
 
         const fileUrl = `${process.env.DO_SPACES_CDN_ENDPOINT}/uploads/${fileName}`;
 
@@ -59,14 +57,13 @@ export async function POST(req: NextRequest) {
             },
         });
 
-        return NextResponse.json({ success: true, data: savedFile });
+        return NextResponse.json({ success: true, data: savedFile, message: "Upload Successful" });
 
     } catch (error) {
         console.error('Upload error:', error);
         return NextResponse.json({ success: false, message: 'Error uploading file' });
     }
 }
-
 
 
 
