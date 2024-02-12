@@ -1,54 +1,50 @@
 "use client";
-import { FC, useEffect, useState } from "react";
+import Button from "../Button/Button";
 import DeleteFile from "../DeleteFile/DeleteFile";
-import axios from "axios";
 
-interface ImageFile {
+// Define an interface for the image object
+interface Image {
   url: string;
   fileName: string;
+  id: string;
 }
 
-interface ImagesProps {
-  // Define any props you might need, if necessary
+// Define an interface for the component's props
+interface ImageGalleryProps {
+  images: Image[];
+  featuredImageId?: string;
+  setFeaturedImageId?: (image: string) => void;
 }
 
-const Images: FC<ImagesProps> = ({}) => {
-  const [images, setImages] = useState<ImageFile[]>([]);
-
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const response = await axios.get("/api/files/images"); // Adjust the endpoint as necessary
-
-        const data = await response.data;
-        if (data.success && data.data) {
-          setImages(data.data);
-        } else {
-          console.error("Failed to load images:", data.message);
-        }
-      } catch (error) {
-        console.error("Failed to fetch images:", error);
-      }
-    };
-
-    fetchImages();
-  }, []); // Empty dependency array means this effect runs once on mount
-
+// Apply the interface to the function component's props
+const Images: React.FC<ImageGalleryProps> = ({
+  images,
+  featuredImageId,
+  setFeaturedImageId,
+}) => {
   return (
-    <div>
-      <h2>Images</h2>
-      <div>
-        {images.map((image, index) => (
-          <div key={index}>
-            <img
-              src={image.url}
-              alt="Image"
-              style={{ width: "100px", height: "auto" }}
-            />
-            <DeleteFile fileName={image.fileName} />
-          </div>
-        ))}
-      </div>
+    <div className="gallery">
+      {images.map((image) => (
+        <div key={image.id}>
+          <img
+            src={image.url}
+            alt="Image"
+            style={{ width: "100px", height: "auto" }}
+          />
+          <DeleteFile fileName={image.fileName} />
+          {setFeaturedImageId && (
+            <Button
+              type="button"
+              onClick={() => setFeaturedImageId(image.id)}
+              component="button"
+              variant="filled"
+            >
+              Select
+            </Button>
+          )}
+          {featuredImageId === image.id && <p>Selected</p>}
+        </div>
+      ))}
     </div>
   );
 };

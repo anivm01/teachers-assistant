@@ -15,6 +15,7 @@ export const FileSchema = z.object({
 export const DownloadableProductSchema = z.object({
     title: z.string(),
     description: z.string(),
+    slug: z.string(),
     type: productTypeEnum.optional(),
     files: z.array(z.string()).optional(),
     categories: z.array(z.string()).optional(),

@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const DELETE = async (req: NextRequest, res: NextResponse) => {
     try {
-        const fileName = req.nextUrl.pathname.split('/').pop();
+        const fileName = decodeURIComponent(req.nextUrl.pathname.split('/').pop() || '');
 
         const fileExists = await db.file.findFirst({
             where: { fileName },

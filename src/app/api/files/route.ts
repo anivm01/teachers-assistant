@@ -1,6 +1,6 @@
 // This will be in your Next.js app directory: `src/app/api/images/upload/route.ts`
 import { NextRequest, NextResponse } from 'next/server';
-import { PutObjectCommand, ObjectCannedACL } from "@aws-sdk/client-s3";
+import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { v4 as uuidv4 } from 'uuid';
 import s3 from '@/lib/digitalOceanSpaces';
 import { db } from "@/lib/db";
@@ -37,6 +37,12 @@ export async function POST(req: NextRequest) {
         const contentType = file.type;
         const buffer = Buffer.from(await file.arrayBuffer());
 
+        // Determine content disposition based on file type
+        let contentDisposition;
+        if (contentType === "application/pdf") {
+            contentDisposition = `attachment; filename="${fileName}"`; // Suggests download for PDFs
+        }
+
         // Upload file to Digital Ocean Spaces
         await s3.send(new PutObjectCommand({
             Bucket: process.env.DO_SPACES_NAME,
@@ -44,6 +50,7 @@ export async function POST(req: NextRequest) {
             Body: buffer,
             ACL: 'public-read',
             ContentType: contentType,
+            ...(contentDisposition && { ContentDisposition: contentDisposition }), // Conditionally add ContentDisposition
         }));
 
         const fileUrl = `${process.env.DO_SPACES_CDN_ENDPOINT}/uploads/${fileName}`;

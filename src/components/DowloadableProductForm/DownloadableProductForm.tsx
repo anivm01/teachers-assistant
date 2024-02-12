@@ -5,15 +5,28 @@ import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import Loader from "../Loader/Loader";
 import { DownloadableProductType } from "@/lib/validators";
+import Images from "../Images/Images";
+import ChooseFeaturedImage from "../ChooseFeaturedImage/ChooseFeaturedImage";
 
-interface DownloadableProductFormProps {}
+interface Image {
+  url: string;
+  fileName: string;
+  id: string;
+}
+interface DownloadableProductFormProps {
+  images: Image[];
+}
 
-const DownloadableProductForm: FC<DownloadableProductFormProps> = ({}) => {
+const DownloadableProductForm: FC<DownloadableProductFormProps> = ({
+  images,
+}) => {
   const router = useRouter();
   const [dpContent, setDpContent] = useState({
     title: "",
     description: "",
   });
+  const [slug, setSlug] = useState("");
+  const [featuredImageId, setFeaturedImageId] = useState("");
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -23,14 +36,16 @@ const DownloadableProductForm: FC<DownloadableProductFormProps> = ({}) => {
       ...prevState,
       [name]: value,
     }));
+    setSlug(dpContent.title.replace(/\s+/g, "-"));
   };
 
   const { mutate: createDownloadableProduct, isPending } = useMutation({
     mutationFn: async () => {
       const payload: DownloadableProductType = {
         ...dpContent,
+        slug,
+        featuredImageId,
       };
-
       const { data } = await axios.post("/api/downloadableProducts", payload);
       return data as string;
     },
@@ -54,8 +69,7 @@ const DownloadableProductForm: FC<DownloadableProductFormProps> = ({}) => {
       console.log(err);
     },
     onSuccess: (data) => {
-      console.log(data);
-      router.push(`/`);
+      router.push(`/admin`);
     },
   });
 
@@ -81,8 +95,19 @@ const DownloadableProductForm: FC<DownloadableProductFormProps> = ({}) => {
         value={dpContent.description}
         onChange={handleChange}
       />
-      <button type="submit">Submit</button>
+      <ChooseFeaturedImage
+        images={images}
+        featuredImageId={featuredImageId}
+        setFeaturedImageId={setFeaturedImageId}
+      />
+      <input type="submit" value="Submit" />
       {isPending && <Loader />}
+
+      {/* <Images
+        images={images}
+        featuredImage={featuredImageId}
+        setFeaturedImage={setFeaturedImageId}
+      /> */}
     </form>
   );
 };

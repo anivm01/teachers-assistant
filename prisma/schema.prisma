@@ -82,7 +82,8 @@ model File {
 model DownloadableProduct {
   id              String      @id @default(cuid())
   title           String      @unique
-  description     String
+  slug            String      @unique
+  description     String      @db.Text
   type            productType @default(Free)
   files           File[]      @relation("Downloadable Products")
   category        Category[]
