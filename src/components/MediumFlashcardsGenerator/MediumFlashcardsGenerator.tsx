@@ -10,7 +10,7 @@ import {
 } from "@react-pdf/renderer";
 import { FlashcardsGeneratorProps } from "@/types/wordListTypes";
 
-const LargeFlashcardsGenerator = ({
+const MediumFlashcardsGenerator = ({
   paperType,
   itemHeight,
   itemWidth,
@@ -31,17 +31,26 @@ const LargeFlashcardsGenerator = ({
       height: itemHeight,
       width: itemWidth,
       margin: "0 auto",
+      display: "flex",
+      flexDirection: "row",
+    },
+    imageBox: {
+      width: "50%",
+      padding: "5mm",
+      border: "1px solid black",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
     },
     image: {
       objectFit: "contain",
-      height: "50%",
-      width: "100%",
-      border: "1px solid black",
+      maxHeight: "70%",
+      maxWidth: itemHeight,
       padding: "5mm",
+      transform: "rotate(-90deg)",
     },
     vocabulary: {
-      height: "50%",
-      width: "100%",
+      width: "50%",
       padding: "5mm",
       border: "1px solid black",
       flexDirection: "column",
@@ -51,7 +60,7 @@ const LargeFlashcardsGenerator = ({
     text: {
       fontSize: "64px",
       fontFamily: "TeachingPrint",
-      transform: "rotate(180deg)",
+      transform: "rotate(90deg)",
       textAlign: "center",
     },
   });
@@ -63,7 +72,9 @@ const LargeFlashcardsGenerator = ({
           {wordList.map((single, index) => {
             return (
               <View style={styles.box} key={index}>
-                <Image src={single.src} style={styles.image} />
+                <View style={styles.imageBox}>
+                  <Image src={single.src} style={styles.image} />
+                </View>
                 <View style={styles.vocabulary}>
                   <Text style={styles.text}>{single.word}</Text>
                 </View>
@@ -76,4 +87,4 @@ const LargeFlashcardsGenerator = ({
   );
 };
 
-export default LargeFlashcardsGenerator;
+export default MediumFlashcardsGenerator;

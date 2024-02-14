@@ -10,13 +10,13 @@ import {
 } from "@react-pdf/renderer";
 import { FlashcardsGeneratorProps } from "@/types/wordListTypes";
 
-const LargeFlashcardsGenerator = ({
+const LargeFlashcardsRenderer: React.FC<FlashcardsGeneratorProps> = ({
   paperType,
   itemHeight,
   itemWidth,
   wordList,
   title,
-}: FlashcardsGeneratorProps) => {
+}) => {
   Font.register({
     family: "TeachingPrint",
     src: "/fonts/TeachingPrintRegular.woff",
@@ -76,4 +76,4 @@ const LargeFlashcardsGenerator = ({
   );
 };
 
-export default LargeFlashcardsGenerator;
+export default LargeFlashcardsRenderer;

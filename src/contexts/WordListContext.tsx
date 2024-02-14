@@ -1,24 +1,16 @@
-'use client'
+"use client";
+import {
+  WordListItem,
+  WordListUpdateContextValue,
+} from "@/types/wordListTypes";
 import React, { useContext, useState, createContext, ReactNode } from "react";
 
-interface Upload {
-  file?: File;
-  file_name?: string;
-  word: string;
-  src: string;
-}
+const WordListContext = createContext<WordListItem[]>([]);
+const WordListUpdateContext = createContext<
+  WordListUpdateContextValue | undefined
+>(undefined);
 
-interface WordListUpdateContextValue {
-  addImagesToList: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  addToWordList: (word: string, index: number) => void;
-  removeFromList: (index: number) => void;
-  changeWordList: (newWordList: Upload[]) => void;
-}
-
-const WordListContext = createContext<Upload[]>([]);
-const WordListUpdateContext = createContext<WordListUpdateContextValue | undefined>(undefined);
-
-export const useWordList = (): Upload[] => {
+export const useWordList = (): WordListItem[] => {
   return useContext(WordListContext);
 };
 
@@ -34,18 +26,20 @@ interface WordListProviderProps {
   children: ReactNode;
 }
 
-export const WordListProvider = ({ children }: WordListProviderProps): JSX.Element => {
-  const [wordList, setWordList] = useState<Upload[]>([]);
+export const WordListProvider = ({
+  children,
+}: WordListProviderProps): JSX.Element => {
+  const [wordList, setWordList] = useState<WordListItem[]>([]);
 
-  const changeWordList = (newWordList: Upload[]) => {
+  const changeWordList = (newWordList: WordListItem[]) => {
     setWordList(newWordList);
   };
 
   const addImagesToList = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files || []
-    const uploads: Upload[] = [];
+    const files = event.target.files || [];
+    const uploads: WordListItem[] = [];
     for (let file of Array.from(files)) {
-      const upload: Upload = {
+      const upload: WordListItem = {
         file: file,
         file_name: file.name,
         word: "",

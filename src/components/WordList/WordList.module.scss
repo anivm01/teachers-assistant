@@ -1,6 +1,12 @@
 @use "../../styles/partials/breakpoints" as*;
 @use "../../styles/partials/colors" as*;
 
+.heading {
+    max-width: 100%;
+    border-bottom: 4px solid $darkest;
+    padding: .5rem 0;
+}
+
 .container {
     width: 100%;
     display: flex;
@@ -35,28 +41,59 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    max-height: 25rem;
+    overflow-y: auto;
+
+    /* Customize the whole scrollbar */
+    &::-webkit-scrollbar {
+        width: .5rem;
+        /* width of the entire scrollbar */
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: transparent;
+        /* color of the tracking area */
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: $dark;
+        border-radius: 10px;
+        /* color of the scroll thumb */
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: $dark;
+        /* color of the scroll thumb on hover */
+    }
 
     @include tablet {
         width: 100%;
     }
 }
 
+.single {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
 .preview {
     background-color: white;
     border: 1px solid black;
     padding: 1rem;
-    margin: .5rem auto;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .image_box {
-    width: 240px;
-    height: 240px;
+    width: 7rem;
+    height: 7rem;
     position: relative;
     margin: 0 auto;
-
 }
 
 .image {
@@ -64,61 +101,28 @@
 }
 
 .remove {
-    background-color: $darkest;
+    background-color: transparent;
     color: $pale;
-    font-size: .8rem;
-    border-radius: 2rem;
-    padding: .4rem .8rem;
-    text-align: center;
     font-family: inherit;
     border: none;
-    margin: .5rem 0;
-    max-width: fit-content;
+    width: 2.5rem;
+    height: 2.5rem;
+    position: relative;
+    top: 1rem;
+    left: 1rem;
+    cursor: pointer;
 }
 
 .word {
-    padding: .5rem;
-    margin-top: .5rem;
+    padding: .25rem;
+    margin-top: .25rem;
     font-size: 1rem;
     color: inherit;
     font-family: inherit;
     text-align: center;
-    border: 1px solid black;
-}
+    border: 1px solid $dark;
 
-.instructions {
-    font-size: 1rem;
-    font-weight: 300;
-    font-style: italic;
-    flex-basis: 80%;
-    margin: 2rem 0 1rem 0;
-
-    @include tablet {
-        font-size: 1.25rem;
-    }
-}
-
-.next {
-    background-color: $light;
-    color: $darkest;
-    align-self: flex-end;
-    margin: 1rem 1rem 1rem auto;
-    width: 15rem;
-    font-size: 1rem;
-    border-radius: 2rem;
-    padding: .8rem 1rem;
-    text-decoration: none;
-    text-transform: uppercase;
-    text-align: center;
-
-    &::after {
-        content: " >>";
-        font-weight: bold;
-        margin-left: 2rem;
-    }
-
-    &:hover {
-        background-color: $darkest;
-        color: $pale;
+    &:focus {
+        outline: 2px solid $dark;
     }
 }

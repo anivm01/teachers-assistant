@@ -1,0 +1,7 @@
+@use "../../../styles/partials/colors" as*;
+
+.section-heading {
+    max-width: 100%;
+    border-bottom: 4px solid $dark;
+    padding: .5rem 0;
+}

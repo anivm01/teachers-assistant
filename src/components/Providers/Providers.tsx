@@ -1,5 +1,6 @@
 "use client";
 
+import { ConfigProvider } from "@/contexts/PdfConfigContext";
 import { WordListProvider } from "@/contexts/WordListContext";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { SessionProvider } from "next-auth/react";
@@ -15,7 +16,9 @@ const Providers: FC<LayoutProps> = ({ children }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <SessionProvider>
-        <WordListProvider>{children}</WordListProvider>
+        <WordListProvider>
+          <ConfigProvider>{children}</ConfigProvider>
+        </WordListProvider>
       </SessionProvider>
     </QueryClientProvider>
   );

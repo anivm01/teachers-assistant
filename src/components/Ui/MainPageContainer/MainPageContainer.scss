@@ -1,0 +1,11 @@
+@use "../../../styles/partials/breakpoints" as*;
+
+.main-page-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 1rem;
+
+    @include desktop {
+        padding: 0;
+    }
+}
