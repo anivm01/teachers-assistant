@@ -5,11 +5,17 @@ export const calculateDimensions = (
     pdfType: PdfType
 ): Pick<ConfigValues, "itemHeight" | "itemWidth"> => {
 
-    let itemHeight = paperType === "A4" ? "297mm" : "279mm"; // Default values in mm
-    let itemWidth = paperType === "A4" ? "210mm" : "216mm";
+    let itemHeight = 0;
+    let itemWidth = 0;
+
+    if (pdfType === "LGFC") {
+        itemHeight = paperType === "A4" ? 297 : 279; // Default values in mm
+        itemWidth = paperType === "A4" ? 210 : 216;
+    }
 
     if (pdfType === "MDFC") {
-        itemHeight = paperType === "A4" ? "148.5mm" : "139.5mm";  // item height is half for a medium size
+        itemHeight = paperType === "A4" ? 148.5 : 139.5;  // item height is half for a medium size
+        itemWidth = paperType === "A4" ? 210 : 216;
     }
 
     return { itemHeight, itemWidth };

@@ -17,6 +17,8 @@ const MediumFlashcardsRenderer: React.FC<FlashcardsGeneratorProps> = ({
   wordList,
   title,
 }: FlashcardsGeneratorProps) => {
+  console.log(`height: ${itemHeight}`);
+  console.log(`width: ${itemWidth}`);
   Font.register({
     family: "TeachingPrint",
     src: "/fonts/TeachingPrintRegular.woff",
@@ -28,8 +30,8 @@ const MediumFlashcardsRenderer: React.FC<FlashcardsGeneratorProps> = ({
     box: {
       border: "1px solid black",
       color: "black",
-      height: itemHeight,
-      width: itemWidth,
+      height: `${itemHeight}mm`,
+      width: `${itemWidth}mm`,
       margin: "0 auto",
       display: "flex",
       flexDirection: "row",
@@ -45,7 +47,7 @@ const MediumFlashcardsRenderer: React.FC<FlashcardsGeneratorProps> = ({
     image: {
       objectFit: "contain",
       maxHeight: "70%",
-      maxWidth: itemHeight,
+      maxWidth: `${itemHeight}mm`,
       padding: "5mm",
       transform: "rotate(-90deg)",
     },

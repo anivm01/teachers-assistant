@@ -3,10 +3,11 @@ import { ConfigValues } from "@/types/wordListTypes";
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
 const defaultConfigValues: ConfigValues = {
-  paperType: "A4", // Default value
-  itemHeight: "", // Default value
-  itemWidth: "", // Default value
+  paperType: undefined, // Default value
+  itemHeight: 0, // Default value
+  itemWidth: 0, // Default value
   title: "", // Default value
+  pdfType: undefined,
 };
 
 const ConfigContext = createContext<{

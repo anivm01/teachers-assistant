@@ -1,4 +1,5 @@
-import PdfPreview from "@/components/PdfPreview/PdfPreview";
+"use client";
+import PdfPreviewCheck from "@/components/PdfPreview/PdfPreviewCheck";
 import MainPageContainer from "@/components/Ui/MainPageContainer/MainPageContainer";
 import { PdfType } from "@/types/wordListTypes";
 import { FC } from "react";
@@ -12,9 +13,9 @@ interface pageProps {
 const page: FC<pageProps> = ({ params }: pageProps) => {
   const { pdfType } = params;
   return (
-    <MainPageContainer>
-      <PdfPreview pdfType={pdfType} />
-    </MainPageContainer>
+    // <MainPageContainer>
+    <PdfPreviewCheck pdfType={pdfType} />
+    // </MainPageContainer>
   );
 };
 

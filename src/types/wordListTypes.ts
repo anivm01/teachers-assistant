@@ -1,24 +1,12 @@
 
-export type PaperType = "A4" | "LETTER";
-export type PdfType = "LGFC" | "MDFC" | "SMFC"
+export type PaperType = "A4" | "LETTER" | undefined;
+export type PdfType = "LGFC" | "MDFC" | "SMFC" | undefined
 
 export interface WordListItem {
     file?: File;
     file_name?: string;
     word: string;
     src: string;
-}
-
-export interface FlashcardsGeneratorProps {
-    paperType: PaperType;
-    itemHeight: string;
-    itemWidth: string;
-    title: string;
-    wordList: WordListItem[];
-}
-
-export interface PdfPreviewProps {
-    pdfType: PdfType;
 }
 
 export interface WordListUpdateContextValue {
@@ -30,7 +18,22 @@ export interface WordListUpdateContextValue {
 
 export interface ConfigValues {
     paperType: PaperType;
-    itemHeight: string;
-    itemWidth: string;
+    itemHeight: number;
+    itemWidth: number;
     title: string;
+    pdfType: PdfType;
 }
+
+export interface FlashcardsGeneratorProps extends ConfigValues {
+    wordList: WordListItem[];
+}
+
+export interface PdfPreviewProps {
+    rendererProps: FlashcardsGeneratorProps
+}
+
+export interface PdfPreviewCheckProps {
+    pdfType: PdfType;
+}
+
+

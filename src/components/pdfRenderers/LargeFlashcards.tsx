@@ -28,8 +28,8 @@ const LargeFlashcardsRenderer: React.FC<FlashcardsGeneratorProps> = ({
     box: {
       border: "1px solid black",
       color: "black",
-      height: itemHeight,
-      width: itemWidth,
+      height: itemHeight + "mm",
+      width: itemWidth + "mm",
       margin: "0 auto",
     },
     image: {
