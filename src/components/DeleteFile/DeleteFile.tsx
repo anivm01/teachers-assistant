@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import Button from "../Button/Button";
+import Button from "../Ui/Button/Button";
 import axios from "axios";
 
 const DeleteFile = ({ fileName }: { fileName: string }) => {

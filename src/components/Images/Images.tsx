@@ -1,5 +1,5 @@
 "use client";
-import Button from "../Button/Button";
+import Button from "../Ui/Button/Button";
 import DeleteFile from "../DeleteFile/DeleteFile";
 
 // Define an interface for the image object

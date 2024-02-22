@@ -39,7 +39,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "types/**/*.d.ts",
-    "src/components/ConfigurePdfDetails/ChooseTemplate.tss",
+    "src/components/CreatePdfFlow/ChooseTemplate.tss",
   ],
   "exclude": [
     "node_modules"

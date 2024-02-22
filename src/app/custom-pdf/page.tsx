@@ -1,11 +1,12 @@
+import ConfigurePdfDetails from "@/components/CreatePdfFlow/ConfigurePdfDetails/ConfigurePdfDetails";
 import MainPageContainer from "@/components/Ui/MainPageContainer/MainPageContainer";
-import Link from "next/link";
+import WordList from "@/components/CreatePdfFlow/WordList/WordList";
 import React from "react";
 
 const Home: React.FC = () => {
   return (
     <MainPageContainer>
-      <Link href="/custom-pdf">Create Pdf</Link>
+      <ConfigurePdfDetails />
     </MainPageContainer>
   );
 };

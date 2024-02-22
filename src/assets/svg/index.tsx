@@ -4,3 +4,5 @@ export { default as Logo } from "./Logo";
 export { default as HamburgerMenu } from "./HamburgerMenu";
 export { default as Chevron } from "./Chevron";
 export { default as RemoveIcon } from "./RemoveIcon";
+export { default as ArrowRight } from "./ArrowRight";
+export { default as ArrowLeft } from "./ArrowLeft";

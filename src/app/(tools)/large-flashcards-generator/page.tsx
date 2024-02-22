@@ -1,7 +1,7 @@
 "use client";
 // import LargeFlashcardsGenerator from "@/components/LargeFlashcardsGenerator/LargeFlashcardsGenerator";
 import MainPageContainer from "@/components/Ui/MainPageContainer/MainPageContainer";
-import WordList from "@/components/WordList/WordList";
+import WordList from "@/components/CreatePdfFlow/WordList/WordList";
 import { LargeFlashcards } from "@/components/pdfRenderers";
 import { useWordList } from "@/contexts/WordListContext";
 import { FlashcardsGeneratorProps } from "@/types/wordListTypes";

@@ -1,7 +1,7 @@
 "use client";
 import LargeFlashcardsGenerator from "@/components/LargeFlashcardsGenerator/LargeFlashcardsGenerator";
 import MainPageContainer from "@/components/Ui/MainPageContainer/MainPageContainer";
-import WordList from "@/components/WordList/WordList";
+import WordList from "@/components/CreatePdfFlow/WordList/WordList";
 import { useWordList } from "@/contexts/WordListContext";
 import { PDFViewer } from "@react-pdf/renderer";
 import React from "react";

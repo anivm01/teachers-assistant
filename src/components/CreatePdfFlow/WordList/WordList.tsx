@@ -3,7 +3,7 @@ import Image from "next/image";
 import style from "./WordList.module.scss";
 import { useWordList, useWordListUpdate } from "@/contexts/WordListContext";
 import { RemoveIcon } from "@/assets/svg";
-import SectionHeading from "../Ui/SectionHeading/SectionHeading";
+import SectionHeading from "../../Ui/SectionHeading/SectionHeading";
 
 export default function WordList() {
   const wordList = useWordList();
@@ -11,8 +11,6 @@ export default function WordList() {
 
   return (
     <section>
-      <SectionHeading text={"Word List"} />
-      <p>Create a word list by uploading your own words and images</p>
       <div className={style.container}>
         <label className={style.button}>
           {wordList.length > 0 ? "Add More Images" : "Add Images"}

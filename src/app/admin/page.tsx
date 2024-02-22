@@ -1,4 +1,4 @@
-import Button from "@/components/Button/Button";
+import Button from "@/components/Ui/Button/Button";
 import Images from "@/components/Images/Images";
 import Pdfs from "@/components/Pdfs/Pdfs";
 import { db } from "@/lib/db";
