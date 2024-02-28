@@ -1,22 +1,34 @@
 "use client";
-import { PDFViewer } from "@react-pdf/renderer";
+import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import { FC } from "react";
-import { LargeFlashcards, MediumFlashcards } from "../pdfRenderers";
+import {
+  GameCards,
+  LargeFlashcards,
+  MediumFlashcards,
+  SmallFlashcards,
+} from "../pdfRenderers";
 import { PdfPreviewProps } from "@/types/wordListTypes";
+import styles from "./PdfPreview.module.scss";
 
-const PdfPreview: FC<PdfPreviewProps> = ({ rendererProps }) => {
+const PdfPreview: FC<PdfPreviewProps> = ({
+  RenderComponent,
+  rendererProps,
+}) => {
   return (
-    <div>
-      {rendererProps.pdfType === "LGFC" && (
-        <PDFViewer width="100%" height="500">
-          <LargeFlashcards {...rendererProps} />
+    <div className={styles.container}>
+      <>
+        <PDFDownloadLink
+          fileName={rendererProps.title}
+          document={<RenderComponent {...rendererProps} />}
+        >
+          {({ blob, url, loading, error }) =>
+            loading ? "Loading document..." : "Download now!"
+          }
+        </PDFDownloadLink>
+        <PDFViewer className={styles.viewer}>
+          <RenderComponent {...rendererProps} />
         </PDFViewer>
-      )}
-      {rendererProps.pdfType === "MDFC" && (
-        <PDFViewer width="100%" height="500">
-          <MediumFlashcards {...rendererProps} />
-        </PDFViewer>
-      )}
+      </>
     </div>
   );
 };

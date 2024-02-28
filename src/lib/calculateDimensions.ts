@@ -18,5 +18,15 @@ export const calculateDimensions = (
         itemWidth = paperType === "A4" ? 210 : 216;
     }
 
+    if (pdfType === "SMFC") {
+        itemHeight = paperType === "A4" ? 148.5 : 139.5;
+        itemWidth = paperType === "A4" ? 105 : 108;
+    }
+
+    if (pdfType === "GC") {
+        itemHeight = paperType === "A4" ? 74.25 : 69.75;
+        itemWidth = paperType === "A4" ? 70 : 72;
+    }
+
     return { itemHeight, itemWidth };
 };

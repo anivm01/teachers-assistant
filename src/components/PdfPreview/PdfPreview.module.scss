@@ -1,0 +1,24 @@
+@use "../../styles/partials/breakpoints" as*;
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.viewer {
+    max-width: 60rem;
+    max-height: 80vh;
+
+    @include tablet {
+        width: 35rem;
+        height: 35rem;
+    }
+
+    @include desktop {
+        width: 55rem;
+        height: 70vh;
+    }
+
+}

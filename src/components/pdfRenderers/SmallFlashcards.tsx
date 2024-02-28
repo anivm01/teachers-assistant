@@ -10,7 +10,7 @@ import {
 } from "@react-pdf/renderer";
 import { FlashcardsGeneratorProps } from "@/types/wordListTypes";
 
-const LargeFlashcardsRenderer: React.FC<FlashcardsGeneratorProps> = ({
+const SmallFlashcardsRenderer: React.FC<FlashcardsGeneratorProps> = ({
   paperType,
   itemHeight,
   itemWidth,
@@ -23,7 +23,8 @@ const LargeFlashcardsRenderer: React.FC<FlashcardsGeneratorProps> = ({
   });
   const styles = StyleSheet.create({
     page: {
-      flexDirection: "column",
+      flexDirection: "row",
+      flexWrap: "wrap",
     },
     box: {
       border: "1px solid black",
@@ -76,4 +77,4 @@ const LargeFlashcardsRenderer: React.FC<FlashcardsGeneratorProps> = ({
   );
 };
 
-export default LargeFlashcardsRenderer;
+export default SmallFlashcardsRenderer;

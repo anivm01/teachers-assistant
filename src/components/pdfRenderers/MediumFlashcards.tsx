@@ -68,7 +68,7 @@ const MediumFlashcardsRenderer: React.FC<FlashcardsGeneratorProps> = ({
   });
 
   return (
-    <Document title={title}>
+    <Document creator="Teacher's Assistant" title={title}>
       <Page wrap={true} size={paperType}>
         <View style={styles.page}>
           {wordList.map((single, index) => {

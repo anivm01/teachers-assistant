@@ -1,6 +1,6 @@
 
 export type PaperType = "A4" | "LETTER" | undefined;
-export type PdfType = "LGFC" | "MDFC" | "SMFC" | undefined
+export type PdfType = "LGFC" | "MDFC" | "SMFC" | "GC" | undefined
 
 export interface WordListItem {
     file?: File;
@@ -30,6 +30,7 @@ export interface FlashcardsGeneratorProps extends ConfigValues {
 
 export interface PdfPreviewProps {
     rendererProps: FlashcardsGeneratorProps
+    RenderComponent: React.ComponentType<FlashcardsGeneratorProps>
 }
 
 export interface PdfPreviewCheckProps {

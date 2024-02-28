@@ -10,7 +10,7 @@ import {
 } from "@react-pdf/renderer";
 import { FlashcardsGeneratorProps } from "@/types/wordListTypes";
 
-const LargeFlashcardsRenderer: React.FC<FlashcardsGeneratorProps> = ({
+const GameCardsRenderer: React.FC<FlashcardsGeneratorProps> = ({
   paperType,
   itemHeight,
   itemWidth,
@@ -23,35 +23,28 @@ const LargeFlashcardsRenderer: React.FC<FlashcardsGeneratorProps> = ({
   });
   const styles = StyleSheet.create({
     page: {
-      flexDirection: "column",
+      flexDirection: "row",
+      flexWrap: "wrap",
     },
     box: {
       border: "1px solid black",
       color: "black",
       height: itemHeight + "mm",
       width: itemWidth + "mm",
-      margin: "0 auto",
-    },
-    image: {
-      objectFit: "contain",
-      height: "50%",
-      width: "100%",
-      border: "1px solid black",
-      padding: "5mm",
-    },
-    vocabulary: {
-      height: "50%",
-      width: "100%",
-      padding: "5mm",
-      border: "1px solid black",
+      margin: "0",
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
     },
+    image: {
+      objectFit: "contain",
+      height: "80%",
+      width: "100%",
+      padding: "5mm",
+    },
     text: {
-      fontSize: "64px",
+      fontSize: "16px",
       fontFamily: "TeachingPrint",
-      transform: "rotate(180deg)",
       textAlign: "center",
     },
   });
@@ -64,9 +57,7 @@ const LargeFlashcardsRenderer: React.FC<FlashcardsGeneratorProps> = ({
             return (
               <View style={styles.box} key={index}>
                 <Image src={single.src} style={styles.image} />
-                <View style={styles.vocabulary}>
-                  <Text style={styles.text}>{single.word}</Text>
-                </View>
+                <Text style={styles.text}>{single.word}</Text>
               </View>
             );
           })}
@@ -76,4 +67,4 @@ const LargeFlashcardsRenderer: React.FC<FlashcardsGeneratorProps> = ({
   );
 };
 
-export default LargeFlashcardsRenderer;
+export default GameCardsRenderer;

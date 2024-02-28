@@ -5,6 +5,19 @@ import { PdfPreviewCheckProps } from "@/types/wordListTypes";
 import { useConfig } from "@/contexts/PdfConfigContext";
 import Link from "next/link";
 import PdfPreview from "./PdfPreview";
+import {
+  GameCards,
+  LargeFlashcards,
+  MediumFlashcards,
+  SmallFlashcards,
+} from "../pdfRenderers";
+
+const componentMap = {
+  LGFC: LargeFlashcards,
+  MDFC: MediumFlashcards,
+  SMFC: SmallFlashcards,
+  GC: GameCards,
+};
 
 const PdfPreviewCheck: FC<PdfPreviewCheckProps> = ({ pdfType }) => {
   const [missingInfo, setMissingInfo] = useState(false);
@@ -27,19 +40,25 @@ const PdfPreviewCheck: FC<PdfPreviewCheckProps> = ({ pdfType }) => {
     wordList: wordList,
   };
 
+  if (!rendererProps.pdfType || missingInfo) {
+    return (
+      <div>
+        <p>Info about various templates etc.....</p>
+        <p>You need to upload content and configure the details for your pdf</p>
+        <Link href="/custom-pdf">Configure</Link>
+      </div>
+    );
+  }
+
+  const RenderComponent =
+    rendererProps.pdfType && componentMap[rendererProps.pdfType];
+
   return (
     <div>
-      {missingInfo ? (
-        <div>
-          <p>Info about various templates etc.....</p>
-          <p>
-            You need to upload content and configure the details for your pdf
-          </p>
-          <Link href="/">Configure</Link>
-        </div>
-      ) : (
-        <PdfPreview rendererProps={rendererProps} />
-      )}
+      <PdfPreview
+        RenderComponent={RenderComponent}
+        rendererProps={rendererProps}
+      />
     </div>
   );
 };
